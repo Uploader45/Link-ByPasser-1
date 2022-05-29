@@ -44,7 +44,7 @@ async def link_handler(bot, message):
     except Exception as e:
         await message.reply(f'**Error** : {e}', quote=True)
 
-   #await message.reply('**Link Correct ga Petu bro 🙂**')
+   #await message.reply('**Link Correct Ga Petu Vro/Zro/Gro/Pro/Bro With 🙂**')
 '''
 
 @bot.on_message(filters.regex(r"(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+"))
