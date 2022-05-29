@@ -16,7 +16,7 @@ BOT_TOKEN = environ.get('BOT_TOKEN')
 bot = Client('LinkByPass bot',
              api_id= "1543212",
              api_hash= "d47de4b25ddf79a08127b433de32dc84",
-             bot_token= "5462389029:AAHiRZVyr-WL2e80y0wz-e7hd9oTOIlM5iY")
+             bot_token= "1814442638:AAEmIzweKsQ7HTZlp3vsfVT3UrXTt38aJkM")
 
 
 @bot.on_message(filters.command('start'))
@@ -25,8 +25,8 @@ async def start(bot, message):
         f"**I Am Alive {message.chat.first_name}**\n"
         "**I Am Link Bypasser Bot, Just Send Me Short Link And Get Direct Link")
 
-
-@bot.on_message(filters.regex(r'\bhttps?://.*gplinks\.co\S+'))
+'''
+@bot.on_message(filters.regex(r'\bhttps?://.*gplinks\.co\S+')))
 async def link_handler(bot, message):
     link = message.matches[0].group(0)
     try:
@@ -44,7 +44,26 @@ async def link_handler(bot, message):
     except Exception as e:
         await message.reply(f'**Error** : {e}', quote=True)
 
+   #await message.reply('**Link Correct ga Petu bro 🙂**')
+'''
 
+@bot.on_message(filters.regex(r"(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+"))
+async def link_handler(bot, message):
+  link = message.matches[0].group(0)
+  if 'gplinks.co' in link:
+    try:
+        short_link = await gplinks_bypass(link)
+        await message.reply(f'**Here Is Your Direct Link** : {short_link}', quote=True)
+    except Exception as e:
+        await message.reply(f'**Error** : {e}', quote=True)
+  elif 'droplink.co' in link:
+     try:
+        short_link = await droplink_bypass(link)
+        await message.reply(f'**Here Is Your Direct Link** : {short_link}', quote=True)
+     except Exception as e:
+        await message.reply(f'**Error** : {e}', quote=True)
+  else:
+    pass
 
 async def gplinks_bypass(url):
     client = cloudscraper.create_scraper(allow_brotli=False)
@@ -98,7 +117,7 @@ async def droplink_bypass(url):
     final_url = f'{p.scheme}://{p.netloc}/links/go'
 
     time.sleep(3.1)
-    res = client.post(final_url, data=data, headers=h).json()
+    res = client.post(final_url, data=data, headers=h)
     try:
         return res.json()['url'].replace('\/','/')
     except: 
