@@ -1,5 +1,5 @@
 import re
-from messages import transition
+from messages import Translation
 import time
 import cloudscraper
 import requests
