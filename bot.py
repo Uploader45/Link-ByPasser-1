@@ -22,9 +22,15 @@ bot = Client('LinkByPass bot',
 
 @bot.on_message(filters.command('start'))
 async def start(bot, message):
-    await message.reply(
-        f"**I Am Alive {message.chat.first_name}**\n"
-        "**I Am Link Bypasser Bot, Just Send Me Short Link And Get Direct Link")
+    await m.reply_text(Translation.START_TEXT,quote=True)
+    except Exception as e:
+        log.info(str(e))
+
+@bot.on_message(filters.command('help'))
+async def help(bot, message):
+    await m.reply_text(Translation.HELP_TEXT,quote=True)
+    except Exception as e:
+        log.info(str(e))
 
 '''
 @bot.on_message(filters.regex(r'\bhttps?://.*gplinks\.co\S+')))
