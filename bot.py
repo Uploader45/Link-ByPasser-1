@@ -77,7 +77,7 @@ async def link_handler(bot, message):
         await message.reply(f'**Here Is Your Direct Link** : {short_link}', quote=True)
      except Exception as e:
         await message.reply(f'**Error** : {e}', quote=True)
-    pass
+     pass
 
 async def gplinks_bypass(url):
     client = cloudscraper.create_scraper(allow_brotli=False)
