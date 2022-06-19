@@ -71,7 +71,12 @@ async def link_handler(bot, message):
         await message.reply(f'**Here Is Your Direct Link** : {short_link}', quote=True)
      except Exception as e:
         await message.reply(f'**Error** : {e}', quote=True)
-  else:
+  elif 'rocklinks.net' in link:
+     try:
+        short_link = await rocklink_bypass(link)
+        await message.reply(f'**Here Is Your Direct Link** : {short_link}', quote=True)
+     except Exception as e:
+        await message.reply(f'**Error** : {e}', quote=True)
     pass
 
 async def gplinks_bypass(url):
@@ -132,7 +137,7 @@ async def droplink_bypass(url):
     except: 
         return "An Error Occured "
 
-def rocklinks_bypass(url):
+def rocklink_bypass(url):
     client = cloudscraper.create_scraper(allow_brotli=False)
     if 'rocklinks.net' in url:
         DOMAIN = "https://links.spidermods.in"
