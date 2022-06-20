@@ -45,7 +45,7 @@ async def help(bot, message):
 async def link_handler(bot, message):
  # link = message.matches[0].group(0)
   l = message.text.split(' ', 1)
-  if link(cmd) == 1:
+  if len(1) == 1:
         return await message.reply_text('Send Any Gplink ,DropLink,Rocklink')
   link = l[1]
   mess = await message.reply_text("**Bypassing...⏳**",quote=True)
