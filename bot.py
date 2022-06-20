@@ -40,7 +40,8 @@ async def help(bot, message):
         await message.reply(f'**Error** : {e}', quote=True)
 
 
-@bot.on_message(filters.regex(r"(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+"))
+#@bot.on_message(filters.regex(r"(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+"))
+@bot.on_message(filters.command('bpp'))
 async def link_handler(bot, message):
   link = message.matches[0].group(0)
   if 'gplinks.co' in link:
