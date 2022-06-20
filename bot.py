@@ -143,7 +143,7 @@ async def droplink_bypass(url):
 async def rocklink_bypass(url):
     client = cloudscraper.create_scraper(allow_brotli=False)
     if 'rocklinks.net' in url:
-        DOMAIN = "https://links.spidermods.in"
+        DOMAIN = "https://pastebin.techymedies.com/"
     else:
         DOMAIN = "https://rocklink.in"
 
@@ -165,7 +165,7 @@ async def rocklink_bypass(url):
 
     h = { "x-requested-with": "XMLHttpRequest" }
     
-    time.sleep(5)
+    time.sleep(8)
     r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
     try:
         return res.json()['url'].replace('\/','/')
