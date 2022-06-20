@@ -44,7 +44,7 @@ async def help(bot, message):
 @bot.on_message(filters.command('bpp'))
 async def link_handler(bot, message):
  # link = message.matches[0].group(0)
-  link = message.message.text
+  link = message.text
   if 'gplinks.co' in link:
     try:
         short_link = await gplinks_bypass(link)
