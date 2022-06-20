@@ -49,7 +49,6 @@ async def link_handler(bot, message):
         short_link = await gplinks_bypass(link)
         mess = await message.reply_text("**Bypassing...⏳**",quote=True)
         await asyncio.sleep(1)
-    try:
         await mess.edit_text(f"**Bypassed URL** : {short_link} \n\n ©cc: {message.from_user.mention}",disable_web_page_preview=True)
     except Exception as e:
         await mess.edit_text(f"**Error** : {e}")
