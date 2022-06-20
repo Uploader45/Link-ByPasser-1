@@ -76,7 +76,7 @@ async def link_handler(bot, message):
      try:
         short_link = await rocklink_bypass(link)
         await mess.edit_text(f'**Here Is Your Direct Link** : {short_link}', quote=True)
-     except Exception as e
+     except Exception as e:
 
         await mess=edit_text(f'**Error** : {e}', quote=True)
      pass
