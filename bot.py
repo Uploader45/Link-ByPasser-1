@@ -58,27 +58,27 @@ async def link_handler(bot, message):
 
 @bot.on_message(filters.regex(r"(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+"))
 async def link_handler(bot, message):
-  mess = await update.reply_text("**Bypassing..⏳**",quote=True)
+  mess = await update.reply_text("**Bypassing...⏳**",quote=True)
   link = message.matches[0].group(0)
   if 'gplinks.co' in link:
     try:
         short_link = await gplinks_bypass(link)
-        await mess.edit_text(f"**Here Is Your Direct Link** : {short_link}")
+        await mess.edit_text("**Here Is Your Direct Link** : {short_link}")
     except Exception as e:
-        await mess.edit_text(f"**Error** : {e}")
+        await mess.edit_text("**Error** : {e}")
   elif 'droplink.co' in link:
      try:
         short_link = await droplink_bypass(link)
-        await mess.edit_text(f"**Here Is Your Direct Link** : {short_link}")
+        await mess.edit_text("**Here Is Your Direct Link** : {short_link}")
      except Exception as e:
-        await mess.edit_text(f"**Error** : {e}")
+        await mess.edit_text("**Error** : {e}")
   elif 'rocklinks.net' in link:
      try:
         short_link = await rocklink_bypass(link)
-        await mess.edit_text(f"**Here Is Your Direct Link** : {short_link}")
+        await mess.edit_text("**Here Is Your Direct Link** : {short_link}")
      except Exception as e:
 
-        await mess=edit_text(f"**Error** : {e}")
+        await mess=edit_text("**Error** : {e}")
      pass
 
 async def gplinks_bypass(url):
