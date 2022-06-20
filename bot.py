@@ -58,23 +58,25 @@ async def link_handler(bot, message):
 
 @bot.on_message(filters.regex(r"(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+"))
 async def link_handler(bot, message):
-  mess = await message.reply_text("**Bypassing...⏳**",quote=True)
   link = message.matches[0].group(0)
   if 'gplinks.co' in link:
     try:
         short_link = await gplinks_bypass(link)
+        mess = await message.reply_text("**Bypassing...⏳**",quote=True)
         await mess.edit_text(f"**Here Is Your Direct Link** : {short_link}")
     except Exception as e:
         await mess.edit_text(f"**Error** : {e}")
   elif 'droplink.co' in link:
      try:
         short_link = await droplink_bypass(link)
+        mess = await message.reply_text("**Bypassing...⏳**",quote=True)
         await mess.edit_text(f"**Here Is Your Direct Link** : {short_link}")
      except Exception as e:
         await mess.edit_text(f"**Error** : {e}")
   elif 'rocklinks.net' in link:
      try:
         short_link = await rocklink_bypass(link)
+        mess = await message.reply_text("**Bypassing...⏳**",quote=True)
         await mess.edit_text(f"**Here Is Your Direct Link** : {short_link}")
      except Exception as e:
 
