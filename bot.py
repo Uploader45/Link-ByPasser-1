@@ -168,7 +168,7 @@ async def rocklink_bypass(url):
     time.sleep(8)
     r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
     try:
-        return res.json()['url'].replace('\/','/')
+        return res.json()['url']
     except: 
         return "An Error Occured "
          
