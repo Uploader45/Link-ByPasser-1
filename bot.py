@@ -39,27 +39,6 @@ async def help(bot, message):
     except Exception as e:
         await message.reply(f'**Error** : {e}', quote=True)
 
-'''
-@bot.on_message(filters.regex(r'\bhttps?://.*gplinks\.co\S+')))
-async def link_handler(bot, message):
-    link = message.matches[0].group(0)
-    try:
-        short_link = await gplinks_bypass(link)
-        await message.reply(f'**Bypassed url** : {short_link} \n cc: {tag_user}', quote=True)
-    except Exception as e:
-        await message.reply(f'**Error** : {e}', quote=True)
-
-@bot.on_message(filters.regex(r'\bhttps?://.*droplink\.co\S+'))
-async def link_handler(bot, message):
-    link = message.matches[0].group(0)
-    try:
-        short_link = await droplink_bypass(link)
-        await message.reply(f'**Bypassed url** : {short_link} \n cc: {tag_user}', quote=True)
-   except Exception as e:
-        await message.reply(f'**Error** : {e}', quote=True)
-
-   #await message.reply('**Link Correct Ga Petu Vro/Zro/Gro/Pro/Bro With 🙂**')
-'''
 
 @bot.on_message(filters.regex(r"(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+"))
 async def link_handler(bot, message):
@@ -68,24 +47,24 @@ async def link_handler(bot, message):
     try:
         short_link = await gplinks_bypass(link)
         mess = await message.reply_text("**Bypassing...⏳**",quote=True)
-        await mess.edit_text(f"**Bypassed URL** : {short_link} \n\n ©cc:{message.from_user.first_name}  ")
+        await mess.edit_text(f"**Bypassed URL** : {short_link} \n\n ©cc:{message.from_user.first_name}")
     except Exception as e:
         await mess.edit_text(f"**Error** : {e}")
   elif 'droplink.co' in link:
      try:
         short_link = await droplink_bypass(link)
-        await message.reply_text("**Bypassing...⏳**",quote=True)
-        await message.edit_text(f"**Here Is Your Direct Link** : {short_link}")
-     except Exception as e:
-        await message.edit_text(f"**Error** : {e}")
+        mess= await message.reply_text("**Bypassing...⏳**",quote=True)
+        await mess.edit_text(f"**Bypassed URL** : {short_link} \n\n ©cc:{message.from_user.first_name}")
+    except Exception as e:
+        await mess.edit_text(f"**Error** : {e}")
   elif 'rocklinks.net' in link:
      try:
         short_link = await rocklink_bypass(link)
-        await message.reply_text("**Bypassing...⏳**",quote=True)
-        await message.edit_text(f"**Here Is Your Direct Link** : {short_link}")
+        mess = await message.reply_text("**Bypassing...⏳**",quote=True)
+        await mess.edit_text(f"**Bypassed URL** : {short_link} \n\n ©cc:{message.from_user.first_name}")
      except Exception as e:
 
-        await message.edit_text(f"**Error** : {e}")
+        await mess.edit_text(f"**Error** : {e}")
      pass
 
 async def gplinks_bypass(url):
