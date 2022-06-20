@@ -41,7 +41,7 @@ async def link_handler(bot, message):
     link = message.matches[0].group(0)
     try:
         short_link = await gplinks_bypass(link)
-        await message.reply(f'**Here Is Your Direct Link** : {short_link}', quote=True)
+        await message.reply(f'**Bypassed url** : {short_link} \n cc: {tag_user}', quote=True)
     except Exception as e:
         await message.reply(f'**Error** : {e}', quote=True)
 
@@ -50,8 +50,8 @@ async def link_handler(bot, message):
     link = message.matches[0].group(0)
     try:
         short_link = await droplink_bypass(link)
-        await message.reply(f'**Here Is Your Direct Link** : {short_link}', quote=True)
-    except Exception as e:
+        await message.reply(f'**Bypassed url** : {short_link} \n cc: {tag_user}', quote=True)
+   except Exception as e:
         await message.reply(f'**Error** : {e}', quote=True)
 
    #await message.reply('**Link Correct Ga Petu Vro/Zro/Gro/Pro/Bro With 🙂**')
@@ -63,22 +63,22 @@ async def link_handler(bot, message):
   if 'gplinks.co' in link:
     try:
         short_link = await gplinks_bypass(link)
-        mess = await message.reply_text("**Bypassing...⏳**",quote=True)
-        await mess.edit_text(f"**Here Is Your Direct Link** : {short_link}")
+        await message.reply_text("**Bypassing...⏳**",quote=True)
+        await message.edit_text(f"**Here Is Your Direct Link** : {short_link}")
     except Exception as e:
         await mess.edit_text(f"**Error** : {e}")
   elif 'droplink.co' in link:
      try:
         short_link = await droplink_bypass(link)
-        mess = await message.reply_text("**Bypassing...⏳**",quote=True)
-        await mess.edit_text(f"**Here Is Your Direct Link** : {short_link}")
+        await message.reply_text("**Bypassing...⏳**",quote=True)
+        await message.edit_text(f"**Here Is Your Direct Link** : {short_link}")
      except Exception as e:
         await mess.edit_text(f"**Error** : {e}")
   elif 'rocklinks.net' in link:
      try:
         short_link = await rocklink_bypass(link)
-        mess = await message.reply_text("**Bypassing...⏳**",quote=True)
-        await mess.edit_text(f"**Here Is Your Direct Link** : {short_link}")
+        await message.reply_text("**Bypassing...⏳**",quote=True)
+        await message.edit_text(f"**Here Is Your Direct Link** : {short_link}")
      except Exception as e:
 
         await mess.edit_text(f"**Error** : {e}")
