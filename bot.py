@@ -68,9 +68,9 @@ async def link_handler(bot, message):
     try:
         short_link = await gplinks_bypass(link)
         await message.reply_text("**Bypassing...⏳**",quote=True)
-        await bot.edit_message_text(f"**Here Is Your Direct Link** : {short_link}",message_id=message.message_id)
+        await bot.edit_message_text(text=f"**Here Is Your Direct Link** : {short_link}",message_id=message.message_id)
     except Exception as e:
-        await bot.edit_message_text(f"**Error** : {e}",message_id=message.message_id)
+        await bot.edit_message_text(text=f"**Error** : {e}",message_id=message.message_id)
   elif 'droplink.co' in link:
      try:
         short_link = await droplink_bypass(link)
