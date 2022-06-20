@@ -23,14 +23,14 @@ bot = Client('LinkByPass bot',
 @bot.on_message(filters.command('start'))
 async def start(bot, message):
     try:
-       await m.reply_text(Translation.START_TEXT,quote=True)
+       await message.reply_text(Translation.START_TEXT,quote=True)
     except Exception as e:
         await message.reply(f'**Error** : {e}', quote=True)
 
 @bot.on_message(filters.command('help'))
 async def help(bot, message):
     try:
-       await m.reply_text(Translation.HELP_TEXT,quote=True)
+       await message.reply_text(Translation.HELP_TEXT,quote=True)
     except Exception as e:
         await message.reply(f'**Error** : {e}', quote=True)
 
