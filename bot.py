@@ -67,10 +67,10 @@ async def link_handler(bot, message):
   if 'gplinks.co' in link:
     try:
         short_link = await gplinks_bypass(link)
-        await message.reply_text("**Bypassing...⏳**",quote=True)
-        await message.edit_text(f"**Bypassed URL** : {short_link} \n\n ©cc: message.from_user.first_name  ")
+        mess = await message.reply_text("**Bypassing...⏳**",quote=True)
+        await mess.edit_text(f"**Bypassed URL** : {short_link} \n\n ©cc: message.from_user.first_name  ")
     except Exception as e:
-        await message.edit_text(f"**Error** : {e}")
+        await mess.edit_text(f"**Error** : {e}")
   elif 'droplink.co' in link:
      try:
         short_link = await droplink_bypass(link)
