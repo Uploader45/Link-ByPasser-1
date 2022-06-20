@@ -24,7 +24,12 @@ bot = Client('LinkByPass bot',
 async def start(bot, message):
     tag_user = f"@{message.from_user.first_name}"
     try:
-       await message.reply_text(Translation.START_TEXT.format(user= tag_user),quote=True)
+       await message.reply_text(Translation.START_TEXT.format(
+                        message.from_user.first_name
+                        reply_markup=reply_markup,
+                        parse_mode="html",
+                        reply_to_message_id=message.message_id
+ ),quote=True)
     except Exception as e:
         await message.reply(f'**Error** : {e}', quote=True)
 
