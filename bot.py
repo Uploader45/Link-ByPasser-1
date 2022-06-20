@@ -137,7 +137,7 @@ async def droplink_bypass(url):
     except: 
         return "An Error Occured "
 
-def rocklink_bypass(url):
+async def rocklink_bypass(url):
     client = cloudscraper.create_scraper(allow_brotli=False)
     if 'rocklinks.net' in url:
         DOMAIN = "https://links.spidermods.in"
