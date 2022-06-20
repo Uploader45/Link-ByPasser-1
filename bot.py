@@ -22,7 +22,7 @@ bot = Client('LinkByPass bot',
 
 @bot.on_message(filters.command('start'))
 async def start(bot, message):
-    tag_user = f"@{message.from_user.username}"
+    tag_user = f"@{message.from_user.first_name}"
     try:
        await message.reply_text(Translation.START_TEXT.format(user= tag_user),quote=True)
     except Exception as e:
