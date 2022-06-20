@@ -58,7 +58,7 @@ async def link_handler(bot, message):
 
 @bot.on_message(filters.regex(r"(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+"))
 async def link_handler(bot, message):
-  mess = await update.reply_text("**Bypassing...⏳**",quote=True)
+  mess = await message.reply_text("**Bypassing...⏳**",quote=True)
   link = message.matches[0].group(0)
   if 'gplinks.co' in link:
     try:
