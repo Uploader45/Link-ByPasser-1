@@ -45,7 +45,7 @@ async def help(bot, message):
 async def link_handler(bot, message):
  # link = message.matches[0].group(0)
   l = message.text
-  link = l.split(' ', 1)
+  link = l.split(' ', 1)[1]
   mess = await message.reply_text("**Bypassing...⏳**",quote=True)
   if 'gplinks.co' in link:
     try:
