@@ -70,14 +70,14 @@ async def link_handler(bot, message):
         await message.reply_text("**Bypassing...⏳**",quote=True)
         await message.edit_text(f"**Here Is Your Direct Link** : {short_link}")
     except Exception as e:
-        await mess.edit_text(f"**Error** : {e}")
+        await message.edit_text(f"**Error** : {e}")
   elif 'droplink.co' in link:
      try:
         short_link = await droplink_bypass(link)
         await message.reply_text("**Bypassing...⏳**",quote=True)
         await message.edit_text(f"**Here Is Your Direct Link** : {short_link}")
      except Exception as e:
-        await mess.edit_text(f"**Error** : {e}")
+        await message.edit_text(f"**Error** : {e}")
   elif 'rocklinks.net' in link:
      try:
         short_link = await rocklink_bypass(link)
@@ -85,7 +85,7 @@ async def link_handler(bot, message):
         await message.edit_text(f"**Here Is Your Direct Link** : {short_link}")
      except Exception as e:
 
-        await mess.edit_text(f"**Error** : {e}")
+        await message.edit_text(f"**Error** : {e}")
      pass
 
 async def gplinks_bypass(url):
