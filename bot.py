@@ -25,7 +25,7 @@ async def start(bot, message):
     tag_user = f"@{message.from_user.first_name}"
     try:
        await message.reply_text(Translation.START_TEXT.format(
-                        message.from_user.first_name
+                        message.from_user.first_name,
                         reply_markup=reply_markup,
                         parse_mode="html",
                         reply_to_message_id=message.message_id
