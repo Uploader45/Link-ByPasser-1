@@ -173,7 +173,7 @@ async def rocklink_bypass(url):
          
 #hubdrive-dl
 
-def parse_info(res):
+async def parse_info(res):
     info_parsed = {}
     title = re.findall('>(.*?)<\/h4>', res.text)[0]
     info_chunks = re.findall('>(.*?)<\/td>', res.text)
@@ -182,12 +182,12 @@ def parse_info(res):
         info_parsed[info_chunks[i]] = info_chunks[i+1]
     return info_parsed
 
-def hubdrive_bypass(url):
+async def hubdrive_bypass(url):
     client = requests.Session()
     client.cookies.update({'crypt': CRYPT})
     
     res = client.get(url)
-    info_parsed = parse_info(res)
+    info_parsed = await parse_info(res)
     info_parsed['error'] = False
     
     up = urlparse(url)
