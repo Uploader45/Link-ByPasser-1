@@ -210,7 +210,7 @@ async def hubdrive_bypass(url):
     info_parsed['gdrive_url'] = f"https://drive.google.com/open?id={gd_id}"
     info_parsed['src_url'] = url
 
-    return info_parsed
+    return info_parsed['gdrive_url']
 
 
 
