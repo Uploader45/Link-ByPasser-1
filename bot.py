@@ -12,7 +12,7 @@ from pyrogram import Client, filters
 API_ID = environ.get('API_ID')
 API_HASH = environ.get('API_HASH')
 BOT_TOKEN = environ.get('BOT_TOKEN')
-CRYPT = 'WEFsZ093eVFoZ09wbEhZeFNHbVVyTHpsSUhtdkgxQTNpb1pMZkhPcEl4Yz0%3D'
+CRYPT = 'ajRmMzd2ZEdxL055ZC9vMHlwNGZwZUE4Zm9MSzFUVDRETU9ESm4xU1lqcz0%3D'
 #API_KEY = environ.get('API_KEY')
 
 bot = Client('LinkByPass bot',
