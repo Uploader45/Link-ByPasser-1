@@ -1,3 +1,4 @@
+import os
 import re
 from transition import Translation
 import time
