@@ -56,8 +56,6 @@ async def start(bot, update):
         ),
         reply_to_message_id=update.message_id
     ) 
-      try:
-       await message.reply_text(Translation.START_TEXT,quote=True)
     except Exception as e:
         await message.reply(f'**Error** : {e}', quote=True)
 
@@ -93,8 +91,6 @@ async def help(bot, update):
         ),
         reply_to_message_id=update.message_id
     ) 
-      try:
-       await message.reply_text(Translation.HELP_TEXT,quote=True)
     except Exception as e:
         await message.reply(f'**Error** : {e}', quote=True)
 
