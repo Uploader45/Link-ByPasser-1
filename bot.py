@@ -8,6 +8,8 @@ from bs4 import BeautifulSoup
 from os import environ
 import aiohttp
 from pyrogram import Client, filters
+from pyrogram import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery, Message
+from pyrogram.errors import UserNotParticipant, UserBannedInChannel 
 
 API_ID = environ.get('API_ID')
 API_HASH = environ.get('API_HASH')
@@ -34,7 +36,6 @@ async def start(bot, update):
                await update.reply_text("**Your Banned**")
                return
         except UserNotParticipant:
-            #await update.reply_text(f"Join Updates Channel")
             await update.reply_text(
                 text="**Join Update Channel**",
                 reply_markup=InlineKeyboardMarkup([
@@ -44,12 +45,7 @@ async def start(bot, update):
             return
         else:
             await update.reply_text(Translation.START_TEXT.format(update.from_user.first_name),
-            tag_user = f"@{message.from_user.first_name}"
-    try:
-       await message.reply_text(Translation.START_TEXT.format(
-                        message.from_user.first_name,
-                        parse_mode="html",
-                  reply_markup=InlineKeyboardMarkup(
+        reply_markup=InlineKeyboardMarkup(
             [
                 [
                         InlineKeyboardButton("HELP", callback_data = "ghelp"),
@@ -59,8 +55,9 @@ async def start(bot, update):
             ]
         ),
         reply_to_message_id=update.message_id
-    )
- ),quote=True)
+    ) 
+      try:
+       await message.reply_text(Translation.START_TEXT,quote=True)
     except Exception as e:
         await message.reply(f'**Error** : {e}', quote=True)
 
