@@ -43,7 +43,7 @@ async def start(bot, update):
               ])
             )
             return
-       else:
+        else:
             await update.reply_text(Translation.START_TEXT.format(update.from_user.first_name),
         reply_markup=InlineKeyboardMarkup(
             [
@@ -57,7 +57,7 @@ async def start(bot, update):
         reply_to_message_id=update.message_id
             )
             return
-       else:
+        try:
             await Exception as e:
                 await message.reply(f'**Error** : {e}', quote=True)
 
@@ -94,7 +94,7 @@ async def help(bot, update):
         reply_to_message_id=update.message_id
             )
             return
-        else:
+         try:
             await Exception as e:
                 await message.reply(f'**Error** : {e}', quote=True)
 
