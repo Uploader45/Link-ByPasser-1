@@ -56,10 +56,6 @@ async def start(bot, update):
         ),
         reply_to_message_id=update.message_id
             )
-            return
-        try:
-            except Exception as e:
-        await update.reply(f'**Error** : {e}', quote=True)
 
 @bot.on_message(filters.command('help'))
 async def help(bot, update):
@@ -93,11 +89,6 @@ async def help(bot, update):
         ),
         reply_to_message_id=update.message_id
             )
-            return
-         try:
-             except Exception as e:
-        await update.reply(f'**Error** : {e}', quote=True)
-
 
 #@bot.on_message(filters.regex(r"(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+"))
 @bot.on_message(filters.command('bpp'))
