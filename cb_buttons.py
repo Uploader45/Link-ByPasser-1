@@ -10,7 +10,7 @@ from translation import Translation
 import pyrogram
 from pyrogram import Client
 from pyrogram import InlineKeyboardMarkup, InlineKeyboardButton
-from bot.py import help, start, about
+from bot import help, start, about
 
 @Client.on_callback_query()
 async def button(bot, update):
