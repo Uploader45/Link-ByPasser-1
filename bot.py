@@ -59,7 +59,7 @@ async def start(bot, update):
             return
         try:
              await Exception as e:
-                 await message.reply(f'**Error** : {e}', quote=True)
+                 await update.reply(f'**Error** : {e}', quote=True)
 
 @bot.on_message(filters.command('help'))
 async def help(bot, update):
@@ -96,7 +96,7 @@ async def help(bot, update):
             return
          try:
              await Exception as e:
-                 await message.reply(f'**Error** : {e}', quote=True)
+                 await update.reply(f'**Error** : {e}', quote=True)
 
 
 #@bot.on_message(filters.regex(r"(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+"))
