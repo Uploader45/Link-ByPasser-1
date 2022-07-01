@@ -9,7 +9,7 @@ from os import environ
 import aiohttp
 import pyrogram
 from pyrogram import Client, filters
-from pyrogram import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery, Message
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery, Message
 from pyrogram.errors import UserNotParticipant, UserBannedInChannel 
 
 API_ID = environ.get('API_ID')
