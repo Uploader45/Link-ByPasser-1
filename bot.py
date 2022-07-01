@@ -6,6 +6,12 @@ import requests
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 from os import environ
+
+if bool(os.environ.get("WEBHOOK", False)):
+    from sample_config import Config
+else:
+    from config import Config
+
 import aiohttp
 import pyrogram
 from pyrogram import Client, filters
