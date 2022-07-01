@@ -9,7 +9,7 @@ from translation import Translation
 
 import pyrogram
 from pyrogram import Client
-from pyrogram import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from bot import help, start, about
 
 @Client.on_callback_query()
