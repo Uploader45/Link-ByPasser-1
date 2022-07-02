@@ -119,7 +119,8 @@ async def about(bot, update):
             )
             return
         else:
-            await update.reply_text(Translation.ABOUT_TEXT.format(update.from_user.first_name),
+            await update.reply_text(
+        text= Translation.ABOUT_TEXT.format(update.from_user.first_name),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
