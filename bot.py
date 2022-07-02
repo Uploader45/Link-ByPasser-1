@@ -303,6 +303,7 @@ async def hubdrive_bypass(url):
 
     return info_parsed['gdrive_url']
 
+
 @bot.on_callback_query()
 async def button(bot, update):
     if update.data == "start":
@@ -337,7 +338,7 @@ async def button(bot, update):
             reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton('HELP', callback_data = "ghelp")
+                    InlineKeyboardButton('HELP', callback_data = "ghelp"),
                     InlineKeyboardButton('CLOSE', callback_data = "close")
                 ]
             ]
