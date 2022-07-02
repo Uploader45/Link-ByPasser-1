@@ -8,7 +8,7 @@ import pyrogram
 import os
 import sqlite3
 
-from pyrogram import Client(bot), filters
+from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery, Message
 from pyrogram.errors import UserNotParticipant, UserBannedInChannel 
 
@@ -19,9 +19,8 @@ else:
 
 from translation import Translation
 
-Client=bot
 
-@bot.on_message(filters.command('start'))
+@Client.on_message(filters.command('start'))
 async def start(bot, update):
     if update.from_user.id in Config.BANNED_USERS:
         await update.reply_text("You are Banned")
@@ -55,7 +54,7 @@ async def start(bot, update):
         reply_to_message_id=update.message_id
             )
 
-@bot.on_message(filters.command('help'))
+@Client.on_message(filters.command('help'))
 async def help(bot, update):
     if update.from_user.id in Config.BANNED_USERS:
         await update.reply_text("You are Banned")
@@ -88,7 +87,7 @@ async def help(bot, update):
         reply_to_message_id=update.message_id
             )
 
-@bot.on_message(filters.command('about'))
+@Client.on_message(filters.command('about'))
 async def about(bot, update):
     if update.from_user.id in Config.BANNED_USERS:
         await update.reply_text("You are Banned")
