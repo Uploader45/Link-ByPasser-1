@@ -19,8 +19,19 @@ else:
 
 from translation import Translation
 
+API_ID = environ.get('API_ID')
+API_HASH = environ.get('API_HASH')
+BOT_TOKEN = environ.get('BOT_TOKEN')
+CRYPT = 'ajRmMzd2ZEdxL055ZC9vMHlwNGZwZUE4Zm9MSzFUVDRETU9ESm4xU1lqcz0%3D'
+#API_KEY = environ.get('API_KEY')
 
-@Client.on_message(filters.command('start'))
+bot = Client('LinkByPass bot',
+             api_id= "1543212",
+             api_hash= "d47de4b25ddf79a08127b433de32dc84",
+             bot_token= "5462389029:AAHiRZVyr-WL2e80y0wz-e7hd9oTOIlM5iY")
+
+
+@bot.on_message(filters.command('start'))
 async def start(bot, update):
     if update.from_user.id in Config.BANNED_USERS:
         await update.reply_text("You are Banned")
@@ -54,7 +65,7 @@ async def start(bot, update):
         reply_to_message_id=update.message_id
             )
 
-@Client.on_message(filters.command('help'))
+@bot.on_message(filters.command('help'))
 async def help(bot, update):
     if update.from_user.id in Config.BANNED_USERS:
         await update.reply_text("You are Banned")
@@ -87,7 +98,7 @@ async def help(bot, update):
         reply_to_message_id=update.message_id
             )
 
-@Client.on_message(filters.command('about'))
+@bot.on_message(filters.command('about'))
 async def about(bot, update):
     if update.from_user.id in Config.BANNED_USERS:
         await update.reply_text("You are Banned")
