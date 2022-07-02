@@ -8,7 +8,7 @@ import pyrogram
 import os
 import sqlite3
 
-from pyrogram import Client, filters
+from pyrogram import Client(bot), filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery, Message
 from pyrogram.errors import UserNotParticipant, UserBannedInChannel 
 
