@@ -91,7 +91,7 @@ async def help(bot, update):
             [
                 [
                     InlineKeyboardButton('ABOUT', callback_data = "about"),
-                    InlineKeyboardButton('START', callback_data = "start")
+                    InlineKeyboardButton('CLOSE', callback_data = "close")
                 ]
             ]
         ),
@@ -124,7 +124,7 @@ async def about(bot, update):
             [
                 [
                     InlineKeyboardButton('HELP', callback_data = "ghelp")
-                    InlineKeyboardButton('START', callback_data = "start")
+                    InlineKeyboardButton('CLOSE', callback_data = "close")
                 ]
             ]
         ),
