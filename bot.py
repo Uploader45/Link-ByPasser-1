@@ -321,7 +321,7 @@ async def button(bot, update):
         ))
     elif update.data == "ghelp":
         await update.message.edit_text(
-            text=Translation.HELP_USER,
+            text=Translation.HELP_TEXT,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
             [
