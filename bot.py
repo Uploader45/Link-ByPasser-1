@@ -31,6 +31,107 @@ bot = Client('LinkByPass bot',
              bot_token= "5462389029:AAHiRZVyr-WL2e80y0wz-e7hd9oTOIlM5iY")
 
 
+@bot.on_message(filters.command('start'))
+async def start(bot, update):
+    if update.from_user.id in Config.BANNED_USERS:
+        await update.reply_text("You are Banned")
+        return
+    update_channel = Config.UPDATE_CHANNEL
+    if update_channel:
+        try:
+            user = await bot.get_chat_member(update_channel, update.chat.id)
+            if user.status == "kicked":
+               await update.reply_text("**Your Banned**")
+               return
+        except UserNotParticipant:
+            await update.reply_text(
+                text="**Join Update Channel**",
+                reply_markup=InlineKeyboardMarkup([
+                    [ InlineKeyboardButton(text="Join My Updates Channel", url=f"https://t.me/{update_channel}")]
+              ])
+            )
+            return
+        else:
+            await update.reply_text(Translation.START_TEXT.format(update.from_user.first_name),
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                        InlineKeyboardButton("HELP", callback_data = "ghelp"),
+                        InlineKeyboardButton("ABOUT", callback_data = "about"),
+                        InlineKeyboardButton("CLOSE", callback_data = "close")
+                ]
+            ]
+        ),
+        reply_to_message_id=update.message_id
+            )
+
+@bot.on_message(filters.command('help'))
+async def help(bot, update):
+    if update.from_user.id in Config.BANNED_USERS:
+        await update.reply_text("You are Banned")
+        return
+    update_channel = Config.UPDATE_CHANNEL
+    if update_channel:
+        try:
+            user = await bot.get_chat_member(update_channel, update.chat.id)
+            if user.status == "kicked":
+               await update.reply_text("**Your Banned**")
+               return
+        except UserNotParticipant:
+            await update.reply_text(
+                text="**Join Update Channel**",
+                reply_markup=InlineKeyboardMarkup([
+                    [ InlineKeyboardButton(text="Join My Updates Channel", url=f"https://t.me/{update_channel}")]
+              ])
+            )
+            return
+        else:
+            await update.reply_text(Translation.HELP_TEXT.format(update.from_user.first_name),
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton('ABOUT', callback_data = "about"),
+                    InlineKeyboardButton('CLOSE', callback_data = "close")
+                ]
+            ]
+        ),
+        reply_to_message_id=update.message_id
+            )
+
+@bot.on_message(filters.command('about'))
+async def about(bot, update):
+    if update.from_user.id in Config.BANNED_USERS:
+        await update.reply_text("You are Banned")
+        return
+    update_channel = Config.UPDATE_CHANNEL
+    if update_channel:
+        try:
+            user = await bot.get_chat_member(update_channel, update.chat.id)
+            if user.status == "kicked":
+               await update.reply_text("**Your Banned**")
+               return
+        except UserNotParticipant:
+            await update.reply_text(
+                text="**Join Update Channel**",
+                reply_markup=InlineKeyboardMarkup([
+                    [ InlineKeyboardButton(text="Join My Updates Channel", url=f"https://t.me/{update_channel}")]
+              ])
+            )
+            return
+        else:
+            await update.reply_text(
+        text= Translation.ABOUT_TEXT.format(update.from_user.first_name),
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton('HELP', callback_data = "ghelp"),
+                    InlineKeyboardButton('CLOSE', callback_data = "close")
+                ]
+            ]
+        ),
+        reply_to_message_id=update.message_id
+            )
+
 #@bot.on_message(filters.regex(r"(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+"))
 @bot.on_message(filters.command('bpp'))
 async def link_handler(bot, message):
@@ -202,6 +303,54 @@ async def hubdrive_bypass(url):
 
     return info_parsed['gdrive_url']
 
+@bot.on_callback_query()
+async def button(bot, update):
+    if update.data == "start":
+        await update.message.edit_text(
+            text=Translation.START_TEXT.format(update.from_user.mention),
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                        InlineKeyboardButton("HELP", callback_data = "ghelp"),
+                        InlineKeyboardButton("ABOUT", callback_data = "about"),
+                        InlineKeyboardButton("CLOSE", callback_data = "close")
+                ]
+            ]
+        ))
+    elif update.data == "ghelp":
+        await update.message.edit_text(
+            text=Translation.HELP_USER,
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton('ABOUT', callback_data = "about"),
+                    InlineKeyboardButton('CLOSE', callback_data = "close")
+                ]
+            ]
+        ))
+    elif update.data == "about":
+        await update.message.edit_text(
+            text=Translation.ABOUT_TEXT,
+            disable_web_page_preview = True,
+            reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton('HELP', callback_data = "ghelp")
+                    InlineKeyboardButton('CLOSE', callback_data = "close")
+                ]
+            ]
+        ))
+    elif update.data == "close":
+        await update.message.delete()
+        try:
+            await update.message.reply_to_message.delete()
+        except:
+            pass
+   
+    else:
+       pass
 
 
 
