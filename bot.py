@@ -65,8 +65,6 @@ async def start(bot, update):
         reply_to_message_id=update.message_id
             )
 
-[
-
 @bot.on_message(filters.command('help'))
 async def help(bot, update):
     if update.from_user.id in Config.BANNED_USERS:
