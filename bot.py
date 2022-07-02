@@ -124,7 +124,7 @@ async def about(bot, update):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton('HELP', callback_data = "ghelp")
+                    InlineKeyboardButton('HELP', callback_data = "ghelp"),
                     InlineKeyboardButton('CLOSE', callback_data = "close")
                 ]
             ]
