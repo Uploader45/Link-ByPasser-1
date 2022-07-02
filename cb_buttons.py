@@ -10,9 +10,12 @@ from translation import Translation
 import pyrogram
 from pyrogram import Client
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from bot import help, start, about
+from help_text import help, start, about
 
-@Client.on_callback_query()
+Client=bot
+
+
+@bot.on_callback_query()
 async def button(bot, update):
     if update.data == "start":
         await update.message.edit_text(
