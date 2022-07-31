@@ -172,6 +172,7 @@ async def link_handler(bot, message):
         await mess.edit_text(f"**Error** : {e}")
      pass
 
+# GpLinks
 async def gplinks_bypass(url):
     client = cloudscraper.create_scraper(allow_brotli=False)
     p = urlparse(url)
@@ -203,6 +204,7 @@ async def gplinks_bypass(url):
     except: 
         return "An Error Occured "
 
+# DropLink
 async def droplink_bypass(url):
     client = requests.Session()
     res = client.get(url)
@@ -230,6 +232,7 @@ async def droplink_bypass(url):
     except: 
         return "An Error Occured "
 
+# RockLink
 async def rocklink_bypass(url):
     client = cloudscraper.create_scraper(allow_brotli=False)
     if 'rocklinks.net' in url:
@@ -303,6 +306,164 @@ async def hubdrive_bypass(url):
 
     return info_parsed['gdrive_url']
 
+# Adfly
+
+def decrypt_url(code):
+    a, b = '', ''
+    for i in range(0, len(code)):
+        if i % 2 == 0: a += code[i]
+        else: b = code[i] + b
+    key = list(a + b)
+    i = 0
+    while i < len(key):
+        if key[i].isdigit():
+            for j in range(i+1,len(key)):
+                if key[j].isdigit():
+                    u = int(key[i]) ^ int(key[j])
+                    if u < 10: key[i] = str(u)
+                    i = j					
+                    break
+        i+=1
+    key = ''.join(key)
+    decrypted = b64decode(key)[16:-16]
+    return decrypted.decode('utf-8')
+
+# ==========================================
+
+def adfly(url):
+    client = cloudscraper.create_scraper(allow_brotli=False)
+    res = client.get(url).text
+    out = {'error': False, 'src_url': url}
+    try:
+        ysmm = re.findall("ysmm\s+=\s+['|\"](.*?)['|\"]", res)[0]
+    except:
+        out['error'] = True
+        return out
+    url = decrypt_url(ysmm)
+    if re.search(r'go\.php\?u\=', url):
+        url = b64decode(re.sub(r'(.*?)u=', '', url)).decode()
+    elif '&dest=' in url:
+        url = unquote(re.sub(r'(.*?)dest=', '', url))
+    out['bypassed_url'] = url
+    return out
+
+# ==========================================
+
+res = adfly(url)
+
+print(res)
+print("Successfully Bypassed!")
+
+# Gplinks V2
+
+def gplinks(url: str):
+    client = cloudscraper.create_scraper(allow_brotli=False)
+    p = urlparse(url)
+    final_url = f"{p.scheme}://{p.netloc}/links/go"
+    res = client.head(url)
+    header_loc = res.headers["location"]
+    param = header_loc.split("postid=")[-1]
+    req_url = f"{p.scheme}://{p.netloc}/{param}"
+    p = urlparse(header_loc)
+    ref_url = f"{p.scheme}://{p.netloc}/"
+    h = {"referer": ref_url}
+    res = client.get(req_url, headers=h, allow_redirects=False)
+    bs4 = BeautifulSoup(res.content, "html.parser")
+    inputs = bs4.find_all("input")
+    time.sleep(10) # !important
+    data = { input.get("name"): input.get("value") for input in inputs }
+    h = {
+        "content-type": "application/x-www-form-urlencoded",
+        "x-requested-with": "XMLHttpRequest"
+    }
+    time.sleep(10)
+    res = client.post(final_url, headers=h, data=data)
+    try:
+        return res.json()["url"].replace("/","/")
+    except: 
+        return "Could not Bypass your URL :("
+
+# ==============================================
+
+res = gplinks(url)
+
+print(res)
+print("Successfully Bypassed!")
+
+# Drop Link v2
+
+def droplink(url):
+    api = "https://api.emilyx.in/api"
+    client = cloudscraper.create_scraper(allow_brotli=False)
+    resp = client.get(url)
+    if resp.status_code == 404:
+        return "File not found/The link you entered is wrong!"
+    try:
+        resp = client.post(api, json={"type": "droplink", "url": url})
+        res = resp.json()
+    except BaseException:
+        return "API UnResponsive / Invalid Link !"
+    if res["success"] is True:
+        return res["url"]
+    else:
+        return res["msg"]
+
+# ==============================================
+
+res = droplink(url)
+
+print(res)
+print("Successfully Bypassed!")
+
+# LinkVertise 
+
+def linkvertise(url):
+    api = "https://api.emilyx.in/api"
+    client = cloudscraper.create_scraper(allow_brotli=False)
+    resp = client.get(url)
+    if resp.status_code == 404:
+        return "File not found/The link you entered is wrong!"
+    try:
+        resp = client.post(api, json={"type": "linkvertise", "url": url})
+        res = resp.json()
+    except BaseException:
+        return "API UnResponsive / Invalid Link !"
+    if res["success"] is True:
+        return res["url"]
+    else:
+        return res["msg"]
+
+# -------------------------------------------
+
+res = linkvertise(url)
+
+print(res)
+print("Successfully Bypassed!")
+
+# Rock Link V2 
+
+def mdisk(url):
+    api = "https://api.emilyx.in/api"
+    client = cloudscraper.create_scraper(allow_brotli=False)
+    resp = client.get(url)
+    if resp.status_code == 404:
+        return "File not found/The link you entered is wrong!"
+    try:
+        resp = client.post(api, json={"type": "mdisk", "url": url})
+        res = resp.json()
+    except BaseException:
+        return "API UnResponsive / Invalid Link !"
+    if res["success"] is True:
+        return res["url"]
+    else:
+        return res["msg"]
+
+# -------------------------------------------
+
+res = mdisk(url)
+
+print(res)
+print("Successfully Generated Direct-Download Link!")
 
 @bot.on_callback_query()
 async def button(bot, update):
