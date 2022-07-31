@@ -144,14 +144,14 @@ async def link_handler(bot, message):
   mess = await message.reply_text("**Bypassing...⏳**",quote=True)
   if 'gplinks.co' in link:
     try:
-        short_link = await gplinks_bypass(link)
+        short_link = await gplinks(link)
       #  mess = await message.reply_text("**Bypassing...⏳**",quote=True)
         await mess.edit_text(f"**Bypassed URL** : {short_link} \n\n ©cc: {message.from_user.mention}",disable_web_page_preview=True)
     except Exception as e:
         await mess.edit_text(f"**Error** : {e}")
   elif 'droplink.co' in link:
      try:
-        short_link = await droplink_bypass(link)
+        short_link = await droplink(link)
      #   mess = await message.reply_text("**Bypassing...⏳**",quote=True)
         await mess.edit_text(f"**Bypassed URL** : {short_link} \n\n ©cc: {message.from_user.mention}",disable_web_page_preview=True)
      except Exception as e:
@@ -170,10 +170,23 @@ async def link_handler(bot, message):
         await mess.edit_text(f"**Bypassed URL** : {short_link} \n\n ©cc: {message.from_user.mention}",disable_web_page_preview=True)
      except Exception as e:
         await mess.edit_text(f"**Error** : {e}")
-     pass
+  elif 'linkvertise' in link:
+     try:
+        short_link = await linkvertise(link)
+     #   mess = await message.reply_text("**Bypassing...⏳**",quote=True)
+        await mess.edit_text(f"**Bypassed URL** : {short_link} \n\n ©cc: {message.from_user.mention}",disable_web_page_preview=True)
+     except Exception as e:
+        await mess.edit_text(f"**Error** : {e}")
+  elif 'mdisk' in link:
+     try:
+        short_link = await mdisk(link)
+     #   mess = await message.reply_text("**Bypassing...⏳**",quote=True)
+        await mess.edit_text(f"**Bypassed URL** : {short_link} \n\n ©cc: {message.from_user.mention}",disable_web_page_preview=True)
+     except Exception as e:
+        await mess.edit_text(f"**Error** : {e}")
 
 # GpLinks
-async def gplinks_bypass(url):
+async def gplinks_bypass1(url):
     client = cloudscraper.create_scraper(allow_brotli=False)
     p = urlparse(url)
     final_url = f'{p.scheme}://{p.netloc}/links/go'
@@ -330,7 +343,7 @@ def decrypt_url(code):
 
 # ==========================================
 
-def adfly(url):
+async def adfly(url):
     client = cloudscraper.create_scraper(allow_brotli=False)
     res = client.get(url).text
     out = {'error': False, 'src_url': url}
@@ -349,14 +362,9 @@ def adfly(url):
 
 # ==========================================
 
-res = adfly(url)
-
-print(res)
-print("Successfully Bypassed!")
-
 # Gplinks V2
 
-def gplinks(url: str):
+async def gplinks(url: str):
     client = cloudscraper.create_scraper(allow_brotli=False)
     p = urlparse(url)
     final_url = f"{p.scheme}://{p.netloc}/links/go"
@@ -385,14 +393,9 @@ def gplinks(url: str):
 
 # ==============================================
 
-res = gplinks(url)
-
-print(res)
-print("Successfully Bypassed!")
-
 # Drop Link v2
 
-def droplink(url):
+async def droplink(url):
     api = "https://api.emilyx.in/api"
     client = cloudscraper.create_scraper(allow_brotli=False)
     resp = client.get(url)
@@ -410,14 +413,12 @@ def droplink(url):
 
 # ==============================================
 
-res = droplink(url)
 
-print(res)
-print("Successfully Bypassed!")
+
 
 # LinkVertise 
 
-def linkvertise(url):
+async def linkvertise(url):
     api = "https://api.emilyx.in/api"
     client = cloudscraper.create_scraper(allow_brotli=False)
     resp = client.get(url)
@@ -433,16 +434,9 @@ def linkvertise(url):
     else:
         return res["msg"]
 
-# -------------------------------------------
-
-res = linkvertise(url)
-
-print(res)
-print("Successfully Bypassed!")
-
 # Rock Link V2 
 
-def mdisk(url):
+async def mdisk(url):
     api = "https://api.emilyx.in/api"
     client = cloudscraper.create_scraper(allow_brotli=False)
     resp = client.get(url)
@@ -459,11 +453,6 @@ def mdisk(url):
         return res["msg"]
 
 # -------------------------------------------
-
-res = mdisk(url)
-
-print(res)
-print("Successfully Generated Direct-Download Link!")
 
 @bot.on_callback_query()
 async def button(bot, update):
