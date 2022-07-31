@@ -185,7 +185,7 @@ async def link_handler(bot, message):
      except Exception as e:
         await mess.edit_text(f"**Error** : {e}")
 
-# GpLinks
+# GpLinksOld
 async def gplinks_bypass1(url):
     client = cloudscraper.create_scraper(allow_brotli=False)
     p = urlparse(url)
@@ -217,7 +217,7 @@ async def gplinks_bypass1(url):
     except: 
         return "An Error Occured "
 
-# DropLink
+# DropLinkOld
 async def droplink_bypass(url):
     client = requests.Session()
     res = client.get(url)
@@ -245,7 +245,7 @@ async def droplink_bypass(url):
     except: 
         return "An Error Occured "
 
-# RockLink
+# RockLinkOld
 async def rocklink_bypass(url):
     client = cloudscraper.create_scraper(allow_brotli=False)
     if 'rocklinks.net' in url:
@@ -279,7 +279,6 @@ async def rocklink_bypass(url):
         return "An Error Occured "
          
 #hubdrive-dl
-
 async def parse_info(res):
     info_parsed = {}
     title = re.findall('>(.*?)<\/h4>', res.text)[0]
@@ -320,7 +319,6 @@ async def hubdrive_bypass(url):
     return info_parsed['gdrive_url']
 
 # Adfly
-
 def decrypt_url(code):
     a, b = '', ''
     for i in range(0, len(code)):
@@ -363,7 +361,6 @@ async def adfly(url):
 # ==========================================
 
 # Gplinks V2
-
 async def gplinks(url: str):
     client = cloudscraper.create_scraper(allow_brotli=False)
     p = urlparse(url)
@@ -394,7 +391,6 @@ async def gplinks(url: str):
 # ==============================================
 
 # Drop Link v2
-
 async def droplink(url):
     api = "https://api.emilyx.in/api"
     client = cloudscraper.create_scraper(allow_brotli=False)
@@ -417,7 +413,6 @@ async def droplink(url):
 
 
 # LinkVertise 
-
 async def linkvertise(url):
     api = "https://api.emilyx.in/api"
     client = cloudscraper.create_scraper(allow_brotli=False)
@@ -434,8 +429,7 @@ async def linkvertise(url):
     else:
         return res["msg"]
 
-# Rock Link V2 
-
+# Mdisk
 async def mdisk(url):
     api = "https://api.emilyx.in/api"
     client = cloudscraper.create_scraper(allow_brotli=False)
