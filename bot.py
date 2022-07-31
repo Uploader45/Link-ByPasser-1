@@ -28,7 +28,7 @@ CRYPT = 'ajRmMzd2ZEdxL055ZC9vMHlwNGZwZUE4Zm9MSzFUVDRETU9ESm4xU1lqcz0%3D'
 bot = Client('LinkByPass bot',
              api_id= "1543212",
              api_hash= "d47de4b25ddf79a08127b433de32dc84",
-             bot_token= "5462389029:AAHiRZVyr-WL2e80y0wz-e7hd9oTOIlM5iY")
+             bot_token= "5462389029:AAEtTZT0mopLzVGM45SUmKHIFto_nEjc48M")
 
 
 @bot.on_message(filters.command('start'))
