@@ -26,114 +26,15 @@ CRYPT = 'ajRmMzd2ZEdxL055ZC9vMHlwNGZwZUE4Zm9MSzFUVDRETU9ESm4xU1lqcz0%3D'
 #API_KEY = environ.get('API_KEY')
 
 bot = Client('LinkByPass bot',
-             api_id= "1543212",
-             api_hash= "d47de4b25ddf79a08127b433de32dc84",
-             bot_token= "5462389029:AAEtTZT0mopLzVGM45SUmKHIFto_nEjc48M")
+             api_id= "14659109",
+             api_hash= "71c040b771802694981aee9286cdff36",
+             bot_token= "5421246156:AAGBzkv4RsVJdQAc_BCvh7L9wVDeIt2b8Lg")
 
 
-@bot.on_message(filters.command('start'))
-async def start(bot, update):
-    if update.from_user.id in Config.BANNED_USERS:
-        await update.reply_text("You are Banned")
-        return
-    update_channel = Config.UPDATE_CHANNEL
-    if update_channel:
-        try:
-            user = await bot.get_chat_member(update_channel, update.chat.id)
-            if user.status == "kicked":
-               await update.reply_text("**Your Banned**")
-               return
-        except UserNotParticipant:
-            await update.reply_text(
-                text="**Join Update Channel**",
-                reply_markup=InlineKeyboardMarkup([
-                    [ InlineKeyboardButton(text="Join My Updates Channel", url=f"https://t.me/{update_channel}")]
-              ])
-            )
-            return
-        else:
-            await update.reply_text(Translation.START_TEXT.format(update.from_user.first_name),
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                        InlineKeyboardButton("HELP", callback_data = "ghelp"),
-                        InlineKeyboardButton("ABOUT", callback_data = "about"),
-                        InlineKeyboardButton("CLOSE", callback_data = "close")
-                ]
-            ]
-        ),
-        reply_to_message_id=update.message_id
-            )
 
-@bot.on_message(filters.command('help'))
-async def help(bot, update):
-    if update.from_user.id in Config.BANNED_USERS:
-        await update.reply_text("You are Banned")
-        return
-    update_channel = Config.UPDATE_CHANNEL
-    if update_channel:
-        try:
-            user = await bot.get_chat_member(update_channel, update.chat.id)
-            if user.status == "kicked":
-               await update.reply_text("**Your Banned**")
-               return
-        except UserNotParticipant:
-            await update.reply_text(
-                text="**Join Update Channel**",
-                reply_markup=InlineKeyboardMarkup([
-                    [ InlineKeyboardButton(text="Join My Updates Channel", url=f"https://t.me/{update_channel}")]
-              ])
-            )
-            return
-        else:
-            await update.reply_text(Translation.HELP_TEXT.format(update.from_user.first_name),
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton('ABOUT', callback_data = "about"),
-                    InlineKeyboardButton('CLOSE', callback_data = "close")
-                ]
-            ]
-        ),
-        reply_to_message_id=update.message_id
-            )
 
-@bot.on_message(filters.command('about'))
-async def about(bot, update):
-    if update.from_user.id in Config.BANNED_USERS:
-        await update.reply_text("You are Banned")
-        return
-    update_channel = Config.UPDATE_CHANNEL
-    if update_channel:
-        try:
-            user = await bot.get_chat_member(update_channel, update.chat.id)
-            if user.status == "kicked":
-               await update.reply_text("**Your Banned**")
-               return
-        except UserNotParticipant:
-            await update.reply_text(
-                text="**Join Update Channel**",
-                reply_markup=InlineKeyboardMarkup([
-                    [ InlineKeyboardButton(text="Join My Updates Channel", url=f"https://t.me/{update_channel}")]
-              ])
-            )
-            return
-        else:
-            await update.reply_text(
-        text= Translation.ABOUT_TEXT.format(update.from_user.first_name),
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton('HELP', callback_data = "ghelp"),
-                    InlineKeyboardButton('CLOSE', callback_data = "close")
-                ]
-            ]
-        ),
-        reply_to_message_id=update.message_id
-            )
-
-#@bot.on_message(filters.regex(r"(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+"))
-@bot.on_message(filters.command('bpp'))
+@bot.on_message(filters.regex(r"(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+"))
+#@bot.on_message(filters.command('bpp'))
 async def link_handler(bot, message):
  # link = message.matches[0].group(0)
   l = message.text.split(' ', 1)
