@@ -33,8 +33,8 @@ bot = Client('LinkByPass bot',
 
 
 
-@bot.on_message(filters.regex(r"(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+"))
-#@bot.on_message(filters.command('bpp'))
+#@bot.on_message(filters.regex(r"(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+"))
+@bot.on_message(filters.command('bpp'))
 async def link_handler(bot, message):
  # link = message.matches[0].group(0)
   l = message.text.split(' ', 1)
